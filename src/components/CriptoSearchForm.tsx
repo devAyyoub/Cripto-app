@@ -6,6 +6,7 @@ import ErrorMessage from "./ErrorMessage";
 
 export default function CriptoSearchForm() {
   const cryptoCurrencies = useCryptoStore((state) => state.cryptoCurrencies);
+  const fetchData = useCryptoStore((state) => state.fetchData);
   const [pair, setPair] = useState<Pair>({
     currency: "",
     criptocurrency: "",
@@ -18,8 +19,8 @@ export default function CriptoSearchForm() {
       setError("Todos los campos son obligatorios");
       return;
     }
-
     setError('')
+    fetchData(pair)
   };
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
